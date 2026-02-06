@@ -1,0 +1,298 @@
+// Criar usuários
+MERGE (:User {nome:"Marcos"});
+MERGE (:User {nome:"Thiago"});
+MERGE (:User {nome:"Pedro"});
+MERGE (:User {nome:"Fabricio"});
+MERGE (:User {nome:"Patricia"});
+MERGE (:User {nome:"Camila"});
+MERGE (:User {nome:"Isabela"});
+MERGE (:User {nome:"Geovana"});
+MERGE (:User {nome:"Ana Letícia"});
+MERGE (:User {nome:"Pyetra"});
+MERGE (:User {nome:"Lays"});
+
+// Criar artistas
+UNWIND [
+  "Keanu Weast", "Slipknot", "Jorge e Matheus", "Charlie Brow Jr",
+  "Cazuza", "Mc Kevin", "Mc Hariel", "Snoop Dogg", "Mcgorila",
+  "Metallica", "Mc Ryan", "Scorpions", "Pink Floyd", "Ney Matogrosso",
+  "Legião Urbana", "Daniel"
+] AS artistName
+MERGE (:Artist {nome: artistName});
+
+// Criar gêneros
+UNWIND ["Funk","Rock","Sertanejo","MPB","Trap"] AS genreName
+MERGE (:Genre {nome: genreName});
+
+// Função auxiliar: cria músicas e relaciona com artista
+// Keanu Weast (faixas fictícias)
+MERGE (a:Artist {nome: "Keanu Weast"})
+UNWIND [
+  "Neon Highway (fictícia)",
+  "Echoes of Rain (fictícia)",
+  "Midnight Driver (fictícia)",
+  "Glass Skyline (fictícia)",
+  "Lost in Motion (fictícia)",
+  "Shadow City (fictícia)",
+  "Paper Planes (fictícia)",
+  "Velvet Nights (fictícia)",
+  "Fade to Blue (fictícia)",
+  "Afterglow (fictícia)"
+] AS track
+MERGE (m:Music {nome: track})
+MERGE (a)-[:CANTOU]->(m);
+
+// Slipknot
+MERGE (a:Artist {nome: "Slipknot"})
+UNWIND [
+  "Wait and Bleed",
+  "Duality",
+  "Psychosocial",
+  "Before I Forget",
+  "The Heretic Anthem",
+  "Spit It Out",
+  "Snuff",
+  "People = Shit",
+  "Left Behind",
+  "Vermilion"
+] AS track
+MERGE (m:Music {nome: track})
+MERGE (a)-[:CANTOU]->(m);
+
+// Jorge e Mateus
+MERGE (a:Artist {nome: "Jorge e Matheus"})
+UNWIND [
+  "Pode Chorar",
+  "Logo Eu",
+  "Tijolinho",
+  "Voa Beija-Flor",
+  "Boate Azul (cover ao vivo)",
+  "Amo Noite e Dia",
+  "Os Anjos Cantam",
+  "Sosseguei",
+  "Pra Sempre Com Você",
+  "Enquanto Houver Razões"
+] AS track
+MERGE (m:Music {nome: track})
+MERGE (a)-[:CANTOU]->(m);
+
+// Charlie Brown Jr
+MERGE (a:Artist {nome: "Charlie Brow Jr"})
+UNWIND [
+  "Proibida pra Mim (Grazon)",
+  "Só Os Loucos Sabem",
+  "Zóio de Lula",
+  "Te Levar",
+  "Papo Reto (Prazer é Sexo, o Resto é Negócio)",
+  "Céu Azul",
+  "Não É Sério",
+  "Rubão",
+  "Confisco",
+  "Tudo Que Ela Gosta de Escutar"
+] AS track
+MERGE (m:Music {nome: track})
+MERGE (a)-[:CANTOU]->(m);
+
+// Cazuza
+MERGE (a:Artist {nome: "Cazuza"})
+UNWIND [
+  "O Tempo Não Para",
+  "Exagerado",
+  "Codinome Beija-Flor",
+  "Ideologia",
+  "Brasil",
+  "Dois Rios",
+  "Por Que a Gente é Assim?",
+  "Blues da Piedade",
+  "Bete Balanço",
+  "Faz Parte do Meu Show"
+] AS track
+MERGE (m:Music {nome: track})
+MERGE (a)-[:CANTOU]->(m);
+
+// Mc Kevin
+MERGE (a:Artist {nome: "Mc Kevin"})
+UNWIND [
+  "O Menino Encosta (feat. outros)",
+  "Cavalo de Aço (fictícia)",
+  "Decolando (fictícia)",
+  "Pra Ela Eu Dou Meu All (fictícia)",
+  "Na Pista (fictícia)",
+  "Noite de Rolê (fictícia)",
+  "Fala Baixinho (fictícia)",
+  "Sobra de Nós (fictícia)",
+  "Perdido no Beat (fictícia)",
+  "Último Shot (fictícia)"
+] AS track
+MERGE (m:Music {nome: track})
+MERGE (a)-[:CANTOU]->(m);
+
+// Mc Hariel
+MERGE (a:Artist {nome: "Mc Hariel"})
+UNWIND [
+  "Toca o Grave",
+  "Sou Amigo do Don",
+  "Recomeçar",
+  "Poesia e Rima",
+  "Eu Tô na Ativa",
+  "Faz um Milagre em Mim (versão funk)",
+  "Tranquilo",
+  "Na Moral",
+  "Sem Sentimento",
+  "Bala na Agulha"
+] AS track
+MERGE (m:Music {nome: track})
+MERGE (a)-[:CANTOU]->(m);
+
+// Snoop Dogg
+MERGE (a:Artist {nome: "Snoop Dogg"})
+UNWIND [
+  "Gin and Juice",
+  "Drop It Like It's Hot",
+  "What's My Name?",
+  "Beautiful",
+  "Sensual Seduction",
+  "Young, Wild & Free (com Wiz Khalifa)",
+  "Lay Low",
+  "Nuthin' but a 'G' Thang",
+  "Vato",
+  "Murder Was the Case"
+] AS track
+MERGE (m:Music {nome: track})
+MERGE (a)-[:CANTOU]->(m);
+
+// Mcgorila (fictício)
+MERGE (a:Artist {nome: "Mcgorila"})
+UNWIND [
+  "Favela King (fictícia)",
+  "Toma Conta (fictícia)",
+  "Revoada (fictícia)",
+  "No Passinho (fictícia)",
+  "Som de Rua (fictícia)",
+  "Resenha da Night (fictícia)",
+  "Ginga Forte (fictícia)",
+  "Chave do Paredão (fictícia)",
+  "Vem Pro Rolê (fictícia)",
+  "Batida Pesada (fictícia)"
+] AS track
+MERGE (m:Music {nome: track})
+MERGE (a)-[:CANTOU]->(m);
+
+// Metallica
+MERGE (a:Artist {nome: "Metallica"})
+UNWIND [
+  "Enter Sandman",
+  "Nothing Else Matters",
+  "One",
+  "Master of Puppets",
+  "The Unforgiven",
+  "Fade to Black",
+  "Seek & Destroy",
+  "Sad but True",
+  "For Whom the Bell Tolls",
+  "Wherever I May Roam"
+] AS track
+MERGE (m:Music {nome: track})
+MERGE (a)-[:CANTOU]->(m);
+
+// Mc Ryan (fictício)
+MERGE (a:Artist {nome: "Mc Ryan"})
+UNWIND [
+  "Ritmo Selvagem (fictícia)",
+  "Noite de Ouro (fictícia)",
+  "Batalha do Paredão (fictícia)",
+  "Sem Freio (fictícia)",
+  "Alto Volume (fictícia)",
+  "Favela Dreams (fictícia)",
+  "Na Mira (fictícia)",
+  "Coração de Rua (fictícia)",
+  "Rolê Certo (fictícia)",
+  "Última Faixa (fictícia)"
+] AS track
+MERGE (m:Music {nome: track})
+MERGE (a)-[:CANTOU]->(m);
+
+// Scorpions
+MERGE (a:Artist {nome: "Scorpions"})
+UNWIND [
+  "Wind of Change",
+  "Still Loving You",
+  "Rock You Like a Hurricane",
+  "No One Like You",
+  "Send Me an Angel",
+  "Holiday",
+  "The Zoo",
+  "Rhythm of Love",
+  "Big City Nights",
+  "Lovedrive"
+] AS track
+MERGE (m:Music {nome: track})
+MERGE (a)-[:CANTOU]->(m);
+
+// Pink Floyd
+MERGE (a:Artist {nome: "Pink Floyd"})
+UNWIND [
+  "Comfortably Numb",
+  "Wish You Were Here",
+  "Another Brick in the Wall, Pt. 2",
+  "Time",
+  "Money",
+  "Shine On You Crazy Diamond",
+  "Hey You",
+  "Us and Them",
+  "Brain Damage",
+  "Echoes"
+] AS track
+MERGE (m:Music {nome: track})
+MERGE (a)-[:CANTOU]->(m);
+
+// Ney Matogrosso
+MERGE (a:Artist {nome: "Ney Matogrosso"})
+UNWIND [
+  "Homem com H",
+  "Poema",
+  "Fala",
+  "Bandido",
+  "Maravilhoso Coração (com outros)",
+  "Dancing Days (versão)",
+  "O Vira (versão ao vivo)",
+  "Balada do Louco",
+  "Aquarela do Brasil (versão)",
+  "Todo Sentimento"
+] AS track
+MERGE (m:Music {nome: track})
+MERGE (a)-[:CANTOU]->(m);
+
+// Legião Urbana
+MERGE (a:Artist {nome: "Legião Urbana"})
+UNWIND [
+  "Tempo Perdido",
+  "Pais e Filhos",
+  "Será",
+  "Eduardo e Mônica",
+  "Será Que É Isso Que Eu Preciso?",
+  "Faroeste Caboclo",
+  "Que País É Este",
+  "Índios",
+  "Monte Castelo",
+  "Por Enquanto"
+] AS track
+MERGE (m:Music {nome: track})
+MERGE (a)-[:CANTOU]->(m);
+
+// Daniel (cantor sertanejo)
+MERGE (a:Artist {nome: "Daniel"})
+UNWIND [
+  "Adoro Amar Você",
+  "Estou Apaixonado",
+  "Te Contei",
+  "Meu Mundo e o Seu",
+  "Casinha Branca",
+  "Sei",
+  "Vou Fazer Você Me Amar",
+  "Só Quero Um Xodó",
+  "A Distância",
+  "Declaração de Amor"
+] AS track
+MERGE (m:Music {nome: track})
+MERGE (a)-[:CANTOU]->(m);
